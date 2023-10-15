@@ -1,4 +1,4 @@
-package com.gcmsoft.todolist.user;
+package com.gcmsoft.todolist.task;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -12,19 +12,23 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity(name = "users")
-public class UserModel {
-
+@Entity(name = "tasks")
+public class TaskModel {
+  
   @Id
   @GeneratedValue(generator = "UUID")
   private UUID id;
 
-  @Column(unique = true)
-  private String username;
-  private String name;
-  private String password;
+  @Column(length = 50)
+  private String title;
+  private String description;
+  private LocalDateTime startAt;
+  private LocalDateTime endAt;
+  private String priority;
+
+  private UUID idUser;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
-  
+
 }
